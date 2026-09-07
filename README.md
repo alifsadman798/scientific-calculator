@@ -6,6 +6,16 @@ A Python Flask-based scientific calculator with normal and complex calculation f
 
 [Open Scientific Calculator](https://scientific-calculator-i2iw.onrender.com)
 
+## 📸 Screenshots
+
+**Simple Mode**
+
+![Simple Mode](screenshots/simple-mode.png)
+
+**Complex Mode**
+
+![Complex Mode](screenshots/complex-mode.png)
+
 ## 💻 Source Code
 
 This repository contains the complete source code of the project.

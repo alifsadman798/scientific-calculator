@@ -1,0 +1,437 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    color: #172033;
+    transition: background 0.2s, color 0.2s;
+}
+
+.app {
+    width: min(850px, 94%);
+    margin: 20px auto;
+}
+
+header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.theme-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    border: none;
+    border-radius: 8px;
+    padding: 8px 11px;
+
+    cursor: pointer;
+    font-size: 18px;
+
+    background: #ffffff;
+    color: #172033;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mode-switch {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.mode-button {
+    flex: 1;
+    border: none;
+    border-radius: 9px;
+    padding: 12px;
+
+    cursor: pointer;
+
+    background: #dfe5ec;
+    color: #172033;
+
+    font-weight: 600;
+}
+
+.mode-button.active {
+    background: #172033;
+    color: white;
+}
+
+.calculator-panel {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.display-area {
+    position: sticky;
+    top: 10px;
+    z-index: 20;
+
+    background: #ffffff;
+
+    border: 1px solid #dce2ea;
+    border-radius: 12px;
+
+    padding: 12px;
+
+    margin-bottom: 15px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.angle-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+    margin-bottom: 8px;
+
+    font-size: 13px;
+}
+
+.angle-row select {
+    border: 1px solid #ccd4df;
+    border-radius: 6px;
+    padding: 5px 8px;
+}
+
+.display-input {
+    width: 100%;
+
+    border: 1px solid #ccd4df;
+    border-radius: 8px;
+
+    padding: 12px;
+
+    font-size: 18px;
+
+    background: #f8fafc;
+    color: #172033;
+
+    outline: none;
+}
+
+.display-input:focus {
+    border-color: #8794a8;
+}
+
+.result {
+    min-height: 35px;
+
+    margin-top: 10px;
+
+    padding: 5px;
+
+    text-align: right;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+.error {
+    color: #c0392b;
+
+    min-height: 20px;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+.expression-example {
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    opacity: 0.65;
+}
+
+
+.functions-section {
+    margin-bottom: 15px;
+}
+
+.function-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+}
+
+.function-header button {
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.function-tabs {
+    display: flex;
+    gap: 6px;
+
+    margin-bottom: 10px;
+}
+
+.function-tab {
+    flex: 1;
+
+    border: none;
+    border-radius: 7px;
+
+    padding: 8px;
+
+    cursor: pointer;
+
+    background: #e7ecf2;
+    color: #172033;
+}
+
+.function-tab.active {
+    background: #172033;
+    color: white;
+}
+
+.function-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+}
+
+.function-grid button {
+    min-height: 42px;
+
+    border: 1px solid #d5dce5;
+    border-radius: 8px;
+
+    background: #f8fafc;
+    color: #172033;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.complex-controls {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.control-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.control-group label {
+    display: block;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 5px;
+}
+
+.control-group select {
+    width: 100%;
+
+    padding: 9px;
+
+    border: 1px solid #ccd4df;
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #172033;
+}
+
+
+.keypad {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
+}
+
+.keypad button {
+    min-height: 54px;
+
+    border: 1px solid #d5dce5;
+    border-radius: 9px;
+
+    background: #f5f7fa;
+    color: #172033;
+
+    cursor: pointer;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition: background 0.15s;
+}
+
+.keypad button:hover {
+    background: #e8edf3;
+}
+
+.keypad .equals {
+    grid-column: span 2;
+}
+
+body.dark {
+    background: #111827;
+    color: #e5e7eb;
+}
+
+body.dark .theme-button {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+body.dark .mode-button {
+    background: #273244;
+    color: #e5e7eb;
+}
+
+body.dark .mode-button.active {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+body.dark .calculator-panel {
+    background: #1b2433;
+}
+
+body.dark .display-area {
+    background: #1b2433;
+    border-color: #344154;
+}
+
+body.dark .display-input {
+    background: #111827;
+    color: #e5e7eb;
+    border-color: #3b4759;
+}
+
+body.dark .angle-row select,
+body.dark .control-group select {
+    background: #111827;
+    color: #e5e7eb;
+    border-color: #3b4759;
+}
+
+body.dark .function-tab {
+    background: #273244;
+    color: #e5e7eb;
+}
+
+body.dark .function-tab.active {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+body.dark .function-grid button,
+body.dark .keypad button {
+    background: #273244;
+    color: #e5e7eb;
+    border-color: #3b4759;
+}
+
+body.dark .keypad button:hover {
+    background: #334155;
+}
+
+body.dark .expression-example {
+    opacity: 0.7;
+}
+
+@media (max-width: 650px) {
+
+    .app {
+        width: 96%;
+        margin: 12px auto;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .calculator-panel {
+        padding: 12px;
+    }
+
+    .keypad {
+        gap: 6px;
+    }
+
+    .keypad button {
+        min-height: 50px;
+    }
+
+    .control-group {
+        min-width: 130px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    .keypad button {
+        min-height: 48px;
+        font-size: 15px;
+    }
+
+    .function-grid {
+        gap: 5px;
+    }
+
+    .function-grid button {
+        min-height: 39px;
+        font-size: 13px;
+    }
+
+    .complex-controls {
+        display: block;
+    }
+
+    .control-group {
+        margin-bottom: 8px;
+    }
+}

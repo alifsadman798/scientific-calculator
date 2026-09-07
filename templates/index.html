@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scientific Calculator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+        <h1>Scientific Calculator</h1>
+        <p>Simple & Advanced Mathematical Calculator</p>
+
+        <button id="themeToggle" class="theme-button">☾</button>
+    </header>
+
+
+    <div class="mode-switch">
+        <button id="simpleModeButton" class="mode-button active">
+            Simple
+        </button>
+
+        <button id="complexModeButton" class="mode-button">
+            Complex
+        </button>
+    </div>
+
+
+    <!-- ================= SIMPLE MODE ================= -->
+
+    <section id="simplePanel" class="calculator-panel">
+
+        <div class="display-area">
+
+            <div class="angle-row">
+                <label for="normalAngle">Angle</label>
+
+                <select id="normalAngle">
+                    <option value="DEG">DEG</option>
+                    <option value="RAD">RAD</option>
+                </select>
+            </div>
+
+            <input
+                type="text"
+                id="normalInput"
+                class="display-input"
+                autocomplete="off"
+            >
+
+            <div id="normalResult" class="result">
+                0
+            </div>
+
+            <div id="normalError" class="error"></div>
+
+        </div>
+
+
+        <div class="functions-section">
+
+            <div class="function-header">
+                <span>Functions</span>
+
+                <button id="simpleFunctionsToggle">
+                    ▼
+                </button>
+            </div>
+
+
+            <div id="simpleFunctions" class="functions-content">
+
+                <div class="function-tabs">
+
+                    <button
+                        class="function-tab active"
+                        data-simple-tab="trig"
+                    >
+                        TRIG
+                    </button>
+
+                    <button
+                        class="function-tab"
+                        data-simple-tab="log"
+                    >
+                        LOG
+                    </button>
+
+                    <button
+                        class="function-tab"
+                        data-simple-tab="other"
+                    >
+                        OTHER
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="simpleTrigFunctions"
+                    class="function-grid"
+                >
+
+                    <button data-normal="sin(">sin</button>
+                    <button data-normal="cos(">cos</button>
+                    <button data-normal="tan(">tan</button>
+                    <button data-normal="cot(">cot</button>
+
+                    <button data-normal="asin(">sin⁻¹</button>
+                    <button data-normal="acos(">cos⁻¹</button>
+                    <button data-normal="atan(">tan⁻¹</button>
+                    <button data-normal="acot(">cot⁻¹</button>
+
+                </div>
+
+
+                <div
+                    id="simpleLogFunctions"
+                    class="function-grid hidden"
+                >
+
+                    <button data-normal="log(">log</button>
+                    <button data-normal="ln(">ln</button>
+                    <button data-normal="exp(">exp</button>
+                    <button data-normal="sqrt(">√</button>
+
+                </div>
+
+
+                <div
+                    id="simpleOtherFunctions"
+                    class="function-grid hidden"
+                >
+
+                    <button data-normal="pi">π</button>
+                    <button data-normal="e">e</button>
+                    <button data-normal="^">^</button>
+                    <button data-normal="!">!</button>
+
+                    <button data-normal="%">%</button>
+                    <button data-normal="i">i</button>
+                    <button data-normal="(">(</button>
+                    <button data-normal=")">)</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="keypad">
+
+            <button id="simpleAC">AC</button>
+            <button id="simpleDEL">DEL</button>
+            <button data-normal="(">(</button>
+            <button data-normal=")">)</button>
+
+            <button data-normal="7">7</button>
+            <button data-normal="8">8</button>
+            <button data-normal="9">9</button>
+            <button data-normal="/">÷</button>
+
+            <button data-normal="4">4</button>
+            <button data-normal="5">5</button>
+            <button data-normal="6">6</button>
+            <button data-normal="*">×</button>
+
+            <button data-normal="1">1</button>
+            <button data-normal="2">2</button>
+            <button data-normal="3">3</button>
+            <button data-normal="-">−</button>
+
+            <button data-normal="0">0</button>
+            <button data-normal=".">.</button>
+            <button data-normal="i">i</button>
+            <button data-normal="+">+</button>
+
+            <button data-normal="%">%</button>
+            <button data-normal="^">xʸ</button>
+
+            <button id="simpleEquals" class="equals">=</button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= COMPLEX MODE ================= -->
+
+    <section id="complexPanel" class="calculator-panel hidden">
+
+        <div class="display-area">
+
+            <div class="angle-row">
+                <label for="complexAngle">Angle</label>
+
+                <select id="complexAngle">
+                    <option value="DEG">DEG</option>
+                    <option value="RAD">RAD</option>
+                </select>
+            </div>
+
+
+            <input
+                type="text"
+                id="complexInput"
+                class="display-input"
+                autocomplete="off"
+            >
+
+            <div
+                id="expressionExample"
+                class="expression-example"
+            ></div>
+
+
+            <div id="complexResult" class="result">
+                0
+            </div>
+
+            <div id="complexError" class="error"></div>
+
+        </div>
+
+
+        <div class="complex-controls">
+
+            <div class="control-group">
+
+                <label for="complexOperation">
+                    Operation
+                </label>
+
+                <select id="complexOperation">
+
+                    <option value="derivative">
+                        Derivative
+                    </option>
+
+                    <option value="integral">
+                        Integral
+                    </option>
+
+                    <option value="solve">
+                        Solve Equation
+                    </option>
+
+                    <option value="algebra">
+                        Algebra
+                    </option>
+
+                    <option value="matrix">
+                        Matrix
+                    </option>
+
+                    <option value="statistics">
+                        Statistics
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="variableControl"
+                class="control-group hidden"
+            >
+
+                <label for="complexVariable">
+                    Variable
+                </label>
+
+                <select id="complexVariable">
+                    <option value="x">x</option>
+                    <option value="y">y</option>
+                    <option value="z">z</option>
+                </select>
+
+            </div>
+
+
+            <div
+                id="orderControl"
+                class="control-group hidden"
+            >
+
+                <label for="derivativeOrder">
+                    Order
+                </label>
+
+                <select id="derivativeOrder">
+
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="algebraControl"
+                class="control-group hidden"
+            >
+
+                <label for="algebraTool">
+                    Algebra
+                </label>
+
+                <select id="algebraTool">
+
+                    <option value="simplify">
+                        Simplify
+                    </option>
+
+                    <option value="factor">
+                        Factor
+                    </option>
+
+                    <option value="expand">
+                        Expand
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="matrixControl"
+                class="control-group hidden"
+            >
+
+                <label for="matrixOperation">
+                    Matrix
+                </label>
+
+                <select id="matrixOperation">
+
+                    <option value="determinant">
+                        Determinant
+                    </option>
+
+                    <option value="inverse">
+                        Inverse
+                    </option>
+
+                    <option value="transpose">
+                        Transpose
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="statisticsControl"
+                class="control-group hidden"
+            >
+
+                <label for="statisticsOperation">
+                    Statistics
+                </label>
+
+                <select id="statisticsOperation">
+
+                    <option value="mean">
+                        Mean
+                    </option>
+
+                    <option value="median">
+                        Median
+                    </option>
+
+                    <option value="variance">
+                        Sample Variance
+                    </option>
+
+                    <option value="stdev">
+                        Sample Std
+                    </option>
+
+                    <option value="min">
+                        Minimum
+                    </option>
+
+                    <option value="max">
+                        Maximum
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="functions-section">
+
+            <div class="function-header">
+
+                <span>Functions</span>
+
+                <button id="complexFunctionsToggle">
+                    ▼
+                </button>
+
+            </div>
+
+
+            <div
+                id="complexFunctions"
+                class="functions-content"
+            >
+
+                <div class="function-tabs">
+
+                    <button
+                        class="function-tab active"
+                        data-complex-tab="trig"
+                    >
+                        TRIG
+                    </button>
+
+                    <button
+                        class="function-tab"
+                        data-complex-tab="log"
+                    >
+                        LOG
+                    </button>
+
+                    <button
+                        class="function-tab"
+                        data-complex-tab="other"
+                    >
+                        OTHER
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="complexTrigFunctions"
+                    class="function-grid"
+                >
+
+                    <button data-complex="sin(">sin</button>
+                    <button data-complex="cos(">cos</button>
+                    <button data-complex="tan(">tan</button>
+                    <button data-complex="cot(">cot</button>
+
+                    <button data-complex="asin(">sin⁻¹</button>
+                    <button data-complex="acos(">cos⁻¹</button>
+                    <button data-complex="atan(">tan⁻¹</button>
+                    <button data-complex="acot(">cot⁻¹</button>
+
+                </div>
+
+
+                <div
+                    id="complexLogFunctions"
+                    class="function-grid hidden"
+                >
+
+                    <button data-complex="log(">log</button>
+                    <button data-complex="ln(">ln</button>
+                    <button data-complex="exp(">exp</button>
+                    <button data-complex="sqrt(">√</button>
+
+                </div>
+
+
+                <div
+                    id="complexOtherFunctions"
+                    class="function-grid hidden"
+                >
+
+                    <button data-complex="pi">π</button>
+                    <button data-complex="e">e</button>
+                    <button data-complex="^">^</button>
+                    <button data-complex="!">!</button>
+
+                    <button data-complex="%">%</button>
+                    <button data-complex="i">i</button>
+                    <button data-complex="(">(</button>
+                    <button data-complex=")">)</button>
+                    <button data-complex=",">,</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="keypad">
+
+            <button id="complexAC">AC</button>
+            <button id="complexDEL">DEL</button>
+            <button data-complex="(">(</button>
+            <button data-complex=")">)</button>
+
+            <button data-complex="7">7</button>
+            <button data-complex="8">8</button>
+            <button data-complex="9">9</button>
+            <button data-complex="/">÷</button>
+
+            <button data-complex="4">4</button>
+            <button data-complex="5">5</button>
+            <button data-complex="6">6</button>
+            <button data-complex="*">×</button>
+
+            <button data-complex="1">1</button>
+            <button data-complex="2">2</button>
+            <button data-complex="3">3</button>
+            <button data-complex="-">−</button>
+
+            <button data-complex="0">0</button>
+            <button data-complex=".">.</button>
+            <button data-complex="i">i</button>
+            <button data-complex="+">+</button>
+
+            <button data-complex="%">%</button>
+            <button data-complex="^">xʸ</button>
+
+            <button id="complexEquals">=</button>
+            <button id="complexCalculate" class="equals">
+                Calculate
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
